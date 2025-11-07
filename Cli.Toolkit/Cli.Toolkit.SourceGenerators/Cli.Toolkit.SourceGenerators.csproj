@@ -2,14 +2,45 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <IsPackable>true</IsPackable>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
 
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
         <RootNamespace>TomRR.Cli.Toolkit</RootNamespace>
-    </PropertyGroup>
 
+        <AssemblyName>TomRR.Cli.Toolkit.SourceGenerators</AssemblyName>
+        <Version>0.0.1</Version>
+        <PackageReleaseNotes>
+            See release notes at https://github.com/TomRR/Cli.Nuget/blob/main/CHANGELOG.md
+        </PackageReleaseNotes>
+
+        <Authors>Tom-Robert Resing</Authors>
+        <ProductName>TomRR.Cli.Toolkit.SourceGenerators</ProductName>
+        <Company>TomRR</Company>
+        <Description>
+            init version: only for internal testing as a prove-of-concept.
+        </Description>
+        <PackageId>TomRR.Cli.Toolkit.SourceGenerators</PackageId>
+        <PackageTags>Cli;Roslyn;Source-Generator;Command-Binding;DotNet;TomRR</PackageTags>
+
+        <Copyright>Copyright © $([System.DateTime]::Now.Year) Tom-Robert Resing</Copyright>
+
+        <RepositoryType>git</RepositoryType>
+        <PublishRepositoryUrl>false</PublishRepositoryUrl>
+        <PackageProjectUrl>https://github.com/TomRR/Cli.Nuget</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/TomRR/Cli.Nuget.git</RepositoryUrl>
+
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="$(MSBuildThisFileDirectory).\README.md" Pack="true" PackagePath="" />
+        <None Include="$(MSBuildThisFileDirectory).\CHANGELOG.md" Pack="true" PackagePath="" />
+        <None Include="$(MSBuildThisFileDirectory)..\..\LICENSE" Pack="true" PackagePath="" />
+    </ItemGroup>
+    
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
             <PrivateAssets>all</PrivateAssets>
