@@ -11,7 +11,7 @@
         <RootNamespace>TomRR.Cli.Toolkit</RootNamespace>
 
         <AssemblyName>TomRR.Cli.Toolkit.SourceGenerators</AssemblyName>
-        <Version>0.0.1</Version>
+        <Version>0.0.3</Version>
         <PackageReleaseNotes>
             See release notes at https://github.com/TomRR/Cli.Nuget/blob/main/CHANGELOG.md
         </PackageReleaseNotes>
@@ -48,12 +48,5 @@
         </PackageReference>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0"/>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0"/>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
     </ItemGroup>
-
-    <ItemGroup>
-        <Folder Include="Generators\CommandBinders\" />
-    </ItemGroup>
-
-
 </Project>

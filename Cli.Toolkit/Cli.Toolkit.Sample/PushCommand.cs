@@ -4,9 +4,10 @@ using Cli.Toolkit.SourceGenerators.Attributes;
 
 namespace TomRR.Cli.Tooling.Sample;
 
-[Command(name: "push", description: "pull description for testing")]
+[Command(name: nameof(sn), description: "pull description for testing")]
 public class PushCommand : ICommand
 {
+    private const string sn = "test";
     public Task RunAsync()
     {
         throw new System.NotImplementedException();

@@ -47,8 +47,8 @@ public static partial class AttributeHelper
                 for (int i = 0; i < args.Count; i++)
                 {
                     var arg = args[i];
-                    var constValue = context.SemanticModel.GetConstantValue(arg.Expression);
-                    if (!constValue.HasValue) continue;
+                    var constValue = GetConst(arg.Expression, context.SemanticModel);
+                    if (constValue is null) continue;
 
                     // Get the parameter name from the constructor symbol
                     var paramName = i < ctorSymbol.Parameters.Length
@@ -60,15 +60,15 @@ public static partial class AttributeHelper
                     switch (paramName)
                     {
                         case nameof(CommandAttribute.Name):
-                            if (constValue.Value is string s && !string.IsNullOrWhiteSpace(s))
+                            if (constValue is string s && !string.IsNullOrWhiteSpace(s))
                                 commandName = s;
                             break;
                         case nameof(CommandAttribute.Description):
-                            if (constValue.Value is string d && !string.IsNullOrWhiteSpace(d))
+                            if (constValue is string d && !string.IsNullOrWhiteSpace(d))
                                 description = d;
                             break;
                         case nameof(CommandAttribute.ShortNames):
-                            if (constValue.Value is string sn && !string.IsNullOrWhiteSpace(sn))
+                            if (constValue is string sn && !string.IsNullOrWhiteSpace(sn))
                                 shortNames.Add(sn);
                             break;
                     }
@@ -140,4 +140,39 @@ if (attr.ArgumentList != null)
 
         return null;
     }
+    
+    
+    static object? GetConst(ExpressionSyntax expr, SemanticModel model)
+    {
+        // 1) literal
+        var cv = model.GetConstantValue(expr);
+        if (cv.HasValue) return cv.Value;
+
+        // 2) nameof(x) → "x"
+        if (expr is InvocationExpressionSyntax inv
+            && inv.Expression is IdentifierNameSyntax id
+            && id.Identifier.Text == "nameof"
+            && inv.ArgumentList.Arguments.Count == 1)
+        {
+            var arg = inv.ArgumentList.Arguments[0].Expression as IdentifierNameSyntax;
+            if (arg != null) return arg.Identifier.Text;
+        }
+
+        // 3) x where x is const field / const local
+        if (expr is IdentifierNameSyntax ident)
+        {
+            var symbol = model.GetSymbolInfo(ident).Symbol;
+
+            if (symbol is IFieldSymbol fs && fs.HasConstantValue)
+                return fs.ConstantValue;
+
+            if (symbol is ILocalSymbol ls && ls.HasConstantValue)
+                return ls.ConstantValue;
+        }
+
+        return null;
+    }
+
+
+
 }
