@@ -1,7 +1,3 @@
-using System.Threading.Tasks;
-using Cli.Toolkit.SourceGenerators;
-using Cli.Toolkit.SourceGenerators.Attributes;
-
 namespace TomRR.Cli.Tooling.Sample;
 
 [Command(name: nameof(sn), description: "pull description for testing")]
@@ -32,4 +28,11 @@ public class PushCommand : ICommand
     //
     // [Argument(1, ofOption: nameof(SetUpstream))]
     // public string? UpstreamBranch { get; set; }
+}
+
+[Command(name: nameof(Name), description: "pull description for testing")]
+public class WithBaseClassCommand : TestBaseClass
+{
+    private const string Name = "WithBaseClassCommand";
+
 }

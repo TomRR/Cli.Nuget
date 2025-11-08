@@ -64,7 +64,7 @@ public static class CommandBinderGenerator
         var allArguments = new List<ArgumentToGenerate>();
 
         // --- Find All Options and Arguments ---
-        foreach (var member in classSymbol.GetMembers().OfType<IPropertySymbol>())
+        foreach (var member in EnumerateSelfAndBaseProperties(classSymbol))
         {
             foreach (var attr in member.GetAttributes())
             {
@@ -219,6 +219,17 @@ public static class CommandBinderGenerator
         builder.AppendLine("}"); // End class
 
         spc.AddSource($"{command.ClassName}_Binder.g.cs", builder.ToString());
+    }
+    
+    private static IEnumerable<IPropertySymbol> EnumerateSelfAndBaseProperties(INamedTypeSymbol type)
+    {
+        for (INamedTypeSymbol? t = type; 
+             t != null && t.SpecialType != SpecialType.System_Object; 
+             t = t.BaseType)
+        {
+            foreach (var p in t.GetMembers().OfType<IPropertySymbol>())
+                yield return p;
+        }
     }
 }
 
