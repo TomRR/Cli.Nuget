@@ -1,5 +1,6 @@
 
-using TomRR.Cli.Toolkit.Generators.AttributeGenerators.Attributes;
+using TomRR.Cli.Toolkit.Attributes.Files;
+using TomRR.Cli.Toolkit.Commands;
 
 namespace TomRR.Cli.Toolkit;
 
@@ -127,6 +128,14 @@ if (attr.ArgumentList != null)
 
 
 
+var commandModel = new CommandClassModel()
+{
+    Namespace = classSymbol.ContainingNamespace.ToDisplayString(),
+    ClassName = classSymbol.Name,
+    CommandName = commandName,
+    CommandShortNames = shortNames.Count > 0 ? shortNames.ToArray() : null,
+    CommandDescription = description
+};
                 return (
                     Namespace: classSymbol.ContainingNamespace.ToDisplayString(),
                     ClassName: classSymbol.Name,

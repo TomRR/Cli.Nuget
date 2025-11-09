@@ -1,5 +1,6 @@
 namespace TomRR.Cli.Toolkit;
-public class CliApp
+
+public sealed partial class CliApp : ICliApp
 {
     private readonly IHost _host;
 

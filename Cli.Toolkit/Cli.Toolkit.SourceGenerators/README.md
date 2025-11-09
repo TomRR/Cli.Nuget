@@ -1,2 +1,2 @@
-# Cli Toolkit SourceGenerator
+# Cli Toolkit
 

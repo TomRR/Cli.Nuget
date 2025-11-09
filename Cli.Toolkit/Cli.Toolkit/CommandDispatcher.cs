@@ -1,6 +1,6 @@
 namespace TomRR.Cli.Toolkit;
 
-public partial class  CommandDispatcher
+public sealed partial class  CommandDispatcher : ICommandDispatcher
 {
     private readonly IServiceProvider _provider;
     private readonly ICommandBinderRegistry _commandBinderRegistry;

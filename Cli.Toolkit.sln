@@ -2,11 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli.Toolkit.SourceGenerators", "Cli.Toolkit\Cli.Toolkit.SourceGenerators\Cli.Toolkit.SourceGenerators.csproj", "{B61E89D4-6018-4B25-B22C-AB395ECB9AC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli.Toolkit.Sample", "Cli.Toolkit\Cli.Toolkit.Sample\Cli.Toolkit.Sample.csproj", "{579FC186-EDB8-426E-878F-E6FB12F0FE57}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli.Toolkit.SourceGenerators.Tests", "Cli.Toolkit\Cli.Toolkit.SourceGenerators.Tests\Cli.Toolkit.SourceGenerators.Tests.csproj", "{7460C606-BD91-473F-8AB7-A2D2D19E64F0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli.Toolkit.Tests", "Cli.Toolkit\Cli.Toolkit.Tests\Cli.Toolkit.Tests.csproj", "{A0AD41BB-61F2-4284-87BC-0FE5D3D8E13F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Cli.Toolkit\Sample\Sample.csproj", "{579FC186-EDB8-426E-878F-E6FB12F0FE57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cli.Toolkit", "Cli.Toolkit\Cli.Toolkit\Cli.Toolkit.csproj", "{1E0DD795-AF4A-45FA-BBC7-84D420CF57BB}"
 EndProject
@@ -24,14 +20,6 @@ Global
 		{579FC186-EDB8-426E-878F-E6FB12F0FE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579FC186-EDB8-426E-878F-E6FB12F0FE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{579FC186-EDB8-426E-878F-E6FB12F0FE57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7460C606-BD91-473F-8AB7-A2D2D19E64F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7460C606-BD91-473F-8AB7-A2D2D19E64F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7460C606-BD91-473F-8AB7-A2D2D19E64F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7460C606-BD91-473F-8AB7-A2D2D19E64F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0AD41BB-61F2-4284-87BC-0FE5D3D8E13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0AD41BB-61F2-4284-87BC-0FE5D3D8E13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0AD41BB-61F2-4284-87BC-0FE5D3D8E13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0AD41BB-61F2-4284-87BC-0FE5D3D8E13F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E0DD795-AF4A-45FA-BBC7-84D420CF57BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E0DD795-AF4A-45FA-BBC7-84D420CF57BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E0DD795-AF4A-45FA-BBC7-84D420CF57BB}.Release|Any CPU.ActiveCfg = Release|Any CPU

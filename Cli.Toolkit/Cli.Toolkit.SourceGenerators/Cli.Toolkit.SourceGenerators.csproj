@@ -8,39 +8,37 @@
 
         <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
         <IsRoslynComponent>true</IsRoslynComponent>
-        <RootNamespace>TomRR.Cli.Toolkit</RootNamespace>
 
+        <RootNamespace>TomRR.Cli.Toolkit</RootNamespace>
         <AssemblyName>TomRR.Cli.Toolkit.SourceGenerators</AssemblyName>
-        <Version>0.0.3</Version>
+        <Version>0.0.9</Version>
+        <PackageId>TomRR.Cli.Toolkit.SourceGenerators</PackageId>
+
         <PackageReleaseNotes>
             See release notes at https://github.com/TomRR/Cli.Nuget/blob/main/CHANGELOG.md
         </PackageReleaseNotes>
-
         <Authors>Tom-Robert Resing</Authors>
         <ProductName>TomRR.Cli.Toolkit.SourceGenerators</ProductName>
         <Company>TomRR</Company>
         <Description>
             init version: only for internal testing as a prove-of-concept.
         </Description>
-        <PackageId>TomRR.Cli.Toolkit.SourceGenerators</PackageId>
-        <PackageTags>Cli;Roslyn;Source-Generator;Command-Binding;DotNet;TomRR</PackageTags>
-
+        <PackageTags>Cli;CliBuiler;CommandBinding;SourceGenerator;;TomRR</PackageTags>
         <Copyright>Copyright © $([System.DateTime]::Now.Year) Tom-Robert Resing</Copyright>
-
         <RepositoryType>git</RepositoryType>
         <PublishRepositoryUrl>false</PublishRepositoryUrl>
         <PackageProjectUrl>https://github.com/TomRR/Cli.Nuget</PackageProjectUrl>
         <RepositoryUrl>https://github.com/TomRR/Cli.Nuget.git</RepositoryUrl>
-
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
+
     <ItemGroup>
         <None Include="$(MSBuildThisFileDirectory).\README.md" Pack="true" PackagePath="" />
         <None Include="$(MSBuildThisFileDirectory).\CHANGELOG.md" Pack="true" PackagePath="" />
         <None Include="$(MSBuildThisFileDirectory)..\..\LICENSE" Pack="true" PackagePath="" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
             <PrivateAssets>all</PrivateAssets>
@@ -49,4 +47,24 @@
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.0"/>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.3.0"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Cli.Toolkit\Cli.Toolkit.csproj">
+            <PrivateAssets>all</PrivateAssets>
+            <SetTargetFramework>TargetFramework=netstandard2.0</SetTargetFramework>
+        </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <TfmSpecificPackageFile Include="$(OutputPath)\Cli.Toolkit.dll"
+                                PackagePath="lib/netstandard2.0/" />
+
+        <None
+                Include="$(OutputPath)\$(AssemblyName).dll"
+                Pack="true"
+                PackagePath="analyzers/dotnet/cs"
+                Visible="false"
+        />
+    </ItemGroup>
+
 </Project>
