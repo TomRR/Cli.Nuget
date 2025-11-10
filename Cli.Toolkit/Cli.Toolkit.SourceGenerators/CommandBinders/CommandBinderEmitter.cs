@@ -1,6 +1,6 @@
-using TomRR.Cli.Toolkit.CommandBinders.CommandBinder.Models;
+using TomRR.Cli.Toolkit.CommandBinders.Models;
 
-namespace TomRR.Cli.Toolkit.CommandBinders.CommandBinder;
+namespace TomRR.Cli.Toolkit.CommandBinders;
 
 public static class CommandBinderEmitter
 {

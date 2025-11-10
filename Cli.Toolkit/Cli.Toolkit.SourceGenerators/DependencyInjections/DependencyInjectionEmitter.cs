@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace TomRR.Cli.Toolkit.DependencyInjections;
 
 public static class DependencyInjectionEmitter

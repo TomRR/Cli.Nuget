@@ -1,4 +1,4 @@
-namespace TomRR.Cli.Toolkit.CommandBinders.CommandBinder.Models;
+namespace TomRR.Cli.Toolkit.CommandBinders.Models;
 
 public class ArgumentToGenerate
 {

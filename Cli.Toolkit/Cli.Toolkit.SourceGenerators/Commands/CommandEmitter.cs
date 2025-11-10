@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace TomRR.Cli.Toolkit.Commands;
 
 public static class CommandEmitter

@@ -1,5 +1,3 @@
-using TomRR.Cli.Toolkit.CommandBinders.CommandBinder;
-
 namespace TomRR.Cli.Toolkit.CommandBinders;
 
 [Generator]
@@ -16,7 +14,7 @@ public class SourceGenerator : IIncrementalGenerator
             .Collect();
     
         context.RegisterSourceOutput(commandClasses,
-            static (spc, arr) => CommandBinderRegistryGenerator.CommandBinderRegistryEmitter.Emit(spc, arr));
+            static (spc, arr) => CommandBinderRegistryEmitter.Emit(spc, arr));
         
         CommandBinderEmitter.Emit(context);
     }

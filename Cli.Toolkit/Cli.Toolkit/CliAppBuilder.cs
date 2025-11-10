@@ -43,7 +43,7 @@ public sealed partial class CliAppBuilder : ICliAppBuilder
         // Post-build action to register with dispatcher
         AddPostBuildAction(host =>
         {
-            var dispatcher = host.Services.GetRequiredService<CommandDispatcher>();
+            var dispatcher = host.Services.GetRequiredService<ICommandDispatcher>();
             dispatcher.Register<TCommand>(name, shortNames);
         });
 

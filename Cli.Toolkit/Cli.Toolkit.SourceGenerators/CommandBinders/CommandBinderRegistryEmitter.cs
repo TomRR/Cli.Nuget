@@ -1,6 +1,4 @@
-using System.Collections.Immutable;
-
-namespace TomRR.Cli.Toolkit.CommandBinders.CommandBinderRegistryGenerator;
+namespace TomRR.Cli.Toolkit.CommandBinders;
 
 public static class CommandBinderRegistryEmitter
 {
