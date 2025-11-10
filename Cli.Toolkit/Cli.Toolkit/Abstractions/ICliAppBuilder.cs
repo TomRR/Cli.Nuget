@@ -1,6 +1,6 @@
 namespace TomRR.Cli.Toolkit.Abstractions;
 
-public interface ICliAppBuilder
+public partial interface ICliAppBuilder
 {
     public CliAppBuilder AddCommand<TCommand>(string name, params string[] shortNames)
         where TCommand : class, ICommand;

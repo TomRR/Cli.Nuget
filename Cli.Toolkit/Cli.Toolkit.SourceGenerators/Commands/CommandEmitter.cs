@@ -2,13 +2,17 @@ namespace TomRR.Cli.Toolkit.Commands;
 
 public static class CommandEmitter
 {
-    public static void Emit(IncrementalGeneratorInitializationContext context, IncrementalValueProvider<ImmutableArray<CommandClassModel>> commandClasses)
+    public static void Emit(
+        SourceProductionContext context,
+        ImmutableArray<CommandToGenerate> commands)
     {
-        context.RegisterSourceOutput(commandClasses,
-            static (spc, arr) => Generate(spc, arr));
+        foreach (var command in commands)
+        {
+            context.AddSource($"{command.ClassName}.Command.g.cs", SourceText.From(SourceCode(command), Encoding.UTF8));
+        }
     }
 
-    private static void Generate(SourceProductionContext context, ImmutableArray<CommandClassModel> commands)
+    private static void Generate(SourceProductionContext context, ImmutableArray<CommandToGenerate> commands)
     {
         foreach (var command in commands)
         {
@@ -17,13 +21,13 @@ public static class CommandEmitter
                 SourceText.From(SourceCode(command), Encoding.UTF8));
         }
     }
-    private static string SourceCode(CommandClassModel command)
+    private static string SourceCode(CommandToGenerate command)
     {
         var bodyBuilder = new StringBuilder();
 
         AppendName(command.CommandName, bodyBuilder);
-        AppendDescription(command.CommandDescription, bodyBuilder);
-        AppendShortNames(command.CommandShortNames, bodyBuilder);
+        AppendDescription(command.Description, bodyBuilder);
+        AppendShortNames(command.ShortNames?.ToList() ?? [], bodyBuilder);
         
         var classBody = bodyBuilder.ToString().TrimEnd();
         
@@ -42,7 +46,8 @@ public sealed partial class {command.ClassName}
     {
         if (!string.IsNullOrWhiteSpace(commandName))
         {
-            bodyBuilder.AppendLine($@"    private string CommandName => ""{commandName}"";");
+            var normalizeCommandName = CommandNameParser.NormalizeCommandName(commandName);
+            bodyBuilder.AppendLine($@"    private string CommandName => ""{normalizeCommandName}"";");
         }
     }
     private static void AppendDescription(string? description, StringBuilder bodyBuilder)
@@ -52,7 +57,7 @@ public sealed partial class {command.ClassName}
             bodyBuilder.AppendLine($@"    private string Description => ""{description}"";");
         }
     }
-    private static void AppendShortNames(string[]? commandShortNames, StringBuilder bodyBuilder)
+    private static void AppendShortNames(List<string>? commandShortNames, StringBuilder bodyBuilder)
     {
         if (commandShortNames is not null && commandShortNames.Any())
         {
