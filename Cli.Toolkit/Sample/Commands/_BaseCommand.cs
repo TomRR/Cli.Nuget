@@ -1,6 +1,6 @@
-namespace TomRR.Cli.Tooling.Sample;
+namespace TomRR.Cli.Tooling.Sample.Commands;
 
-public abstract partial class TestBaseClass : ICommand
+public abstract partial class BaseCommand : ICommand
 {
     public Task RunAsync()
     {

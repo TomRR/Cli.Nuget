@@ -1,7 +1,7 @@
-namespace TomRR.Cli.Toolkit.Attributes.Files;
+namespace TomRR.Cli.Toolkit.Attributes;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-internal sealed partial class OptionAttribute : Attribute
+public sealed partial class OptionAttribute : Attribute
 {
     public string LongName { get; }
     public string? ShortName { get; }

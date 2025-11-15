@@ -1,9 +1,0 @@
-Customer
-Product
-Stock
-Shop
-Employee
-
-need to install Microsoft.Extensions.DependencyInjection
-and 
-Microsoft.Extensions.Hosting

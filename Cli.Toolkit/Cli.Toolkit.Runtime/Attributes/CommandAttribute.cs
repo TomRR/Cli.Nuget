@@ -1,7 +1,7 @@
-namespace TomRR.Cli.Toolkit.Attributes.Files;
+namespace TomRR.Cli.Toolkit.Attributes;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-internal sealed partial class CommandAttribute : Attribute
+public sealed partial class CommandAttribute : Attribute
 {
     public string? Name { get; }
     public string?[] ShortNames { get; }

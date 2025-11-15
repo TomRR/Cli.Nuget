@@ -1,7 +1,7 @@
-namespace TomRR.Cli.Toolkit.Attributes.Files;
+namespace TomRR.Cli.Toolkit.Attributes;
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-internal sealed partial class ArgumentAttribute : Attribute
+public sealed partial class ArgumentAttribute : Attribute
 {
     /// <summary>
     /// The name of the option property this argument belongs to (if any).

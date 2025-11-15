@@ -7,7 +7,7 @@ and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [0.0.1-0.0.X]  — 2025-11-08
+## [0.0.10]  — 2025-11-11
 ### Added
 - Initial versions (PoC)
 
