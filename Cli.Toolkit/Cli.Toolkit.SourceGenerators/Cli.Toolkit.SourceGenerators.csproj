@@ -11,7 +11,7 @@
 
         <RootNamespace>TomRR.Cli.Toolkit</RootNamespace>
         <AssemblyName>TomRR.Cli.Toolkit.SourceGenerators</AssemblyName>
-        <Version>0.0.11</Version>
+        <Version>0.0.12</Version>
         <PackageId>TomRR.Cli.Toolkit.SourceGenerators</PackageId>
 
         <PackageReleaseNotes>

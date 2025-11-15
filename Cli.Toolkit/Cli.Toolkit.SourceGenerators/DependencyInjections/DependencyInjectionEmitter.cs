@@ -110,20 +110,20 @@ public static partial class {className}
         this global::TomRR.Cli.Toolkit.Abstractions.ICliAppBuilder builder)
     {{
         return builder.AddDependencies(services =>
-        {{
-            // 1. Register the concrete class as the primary singleton.
-            // This is what CliApp.RunAsync() is looking for.
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions
-                .AddSingleton<global::TomRR.Cli.Toolkit.CommandDispatcher>(services);
-    
-            // 2. Register the interface as a ""forwarding"" registration.
-            // This tells DI: ""When someone asks for ICommandDispatcher,
-            // give them the singleton CommandDispatcher we already registered.""
-            // This is what AddCommand() is looking for.
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions
-                .AddSingleton<global::TomRR.Cli.Toolkit.Abstractions.ICommandDispatcher>(
-                    sp => sp.GetRequiredService<global::TomRR.Cli.Toolkit.CommandDispatcher>());
-        }});
+    {{
+        // 1. Register the concrete class (using the full static method call)
+        global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions
+            .AddSingleton<global::TomRR.Cli.Toolkit.CommandDispatcher>(services);
+
+        // 2. Register the interface to forward to the concrete class (also using the full static method call)
+        global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions
+            .AddSingleton<global::TomRR.Cli.Toolkit.Abstractions.ICommandDispatcher>(
+                services, // The 'this IServiceCollection' argument
+                sp =>     // The factory function
+                    global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions
+                        .GetRequiredService<global::TomRR.Cli.Toolkit.CommandDispatcher>(sp)
+            );
+    }});
     }}
 
     public static global::{Constance.NamespaceBaseAbstractions}.ICliAppBuilder AddCommandBinderRegistry(
