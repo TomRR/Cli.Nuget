@@ -1,5 +1,6 @@
 namespace TomRR.Cli.Toolkit;
-public class CliAppBuilder
+
+public sealed partial class CliAppBuilder : ICliAppBuilder
 {
     private readonly IHostBuilder _builder;
     private readonly List<Action<IHost>> _postBuildActions = new();
@@ -30,6 +31,25 @@ public class CliAppBuilder
         return new CliAppBuilder(builder);
     }
 
+    public CliAppBuilder AddCommand<TCommand>(string name, params string[] shortNames)
+        where TCommand : class, ICommand
+    {
+        AddDependencies(services =>
+        {
+            services.AddSingleton<TCommand>();
+            services.AddSingleton<ICommand, TCommand>();
+        });
+
+        // Post-build action to register with dispatcher
+        AddPostBuildAction(host =>
+        {
+            var dispatcher = host.Services.GetRequiredService<ICommandDispatcher>();
+            dispatcher.Register<TCommand>(name, shortNames);
+        });
+
+        return this;
+    }
+    
     public CliAppBuilder AddDependencies(Action<IServiceCollection> configureServices)
     {
         configureServices(Services);

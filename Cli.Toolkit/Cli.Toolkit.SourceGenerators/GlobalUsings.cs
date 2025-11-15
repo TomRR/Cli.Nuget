@@ -2,8 +2,11 @@
 
 global using System;
 global using System.Collections.Generic;
+global using System.Collections.Immutable;
 global using System.Linq;
-global using System.Threading.Tasks;
+global using System.Text;
 global using Microsoft.CodeAnalysis;
 global using Microsoft.CodeAnalysis.CSharp.Syntax;
-global using TomRR.Cli.Toolkit;
+global using Microsoft.CodeAnalysis.Text;
+global using TomRR.Cli.Toolkit._Shared;
+global using TomRR.Cli.Toolkit._Shared.Models;
